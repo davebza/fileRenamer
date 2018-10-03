@@ -1,0 +1,25 @@
+#! python3
+
+import os
+
+def rename(directory, targetSharedName):
+   fileList = os.listdir(directory)
+   for i in range(len(fileList)):
+       oldName = fileList[i]
+       dotPosition = oldName.rfind('.')
+       extension = oldName[dotPosition:]
+       if i < 9:
+           fullNameString = targetSharedName + "0" + str(i+1) + extension
+       else:
+           fullNameString = targetSharedName + str(i + 1) + extension
+       print("{}: {}".format(oldName, fullNameString))
+       os.rename(os.path.join(directory, oldName),
+                    os.path.join(directory, fullNameString))
+
+directoryLocation = "/Users/davidbrown/Desktop/KnightSquad"
+targetSharedName = "Knight Squad S01E"
+
+rename(directoryLocation, targetSharedName)
+
+
+
